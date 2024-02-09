@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "averta cy w10";
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  width: 800px;
+  height: 400px;
+  margin: 30px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 40px;
+  margin: 10px 15px;
+}
+
+textarea {
+  border-radius: 5px;
+  margin: 15px;
+  resize: none;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+  margin: 10px 20px;
+  cursor: pointer;
+  background-color: rgb(0, 134, 0);
+  color: white;
+  border: 0;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.note {
+  margin: 0px 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.note-container {
+  padding: 20px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.textValue {
+  text-transform: capitalize;
+  padding: 5px;
+  font-weight: 500;
+}
+
+.view-detail {
+  margin: 10px 0px;
+  background-color: rgb(132, 0, 255);
+  padding: 8px 12px;
+  color: white;
+  cursor: pointer;
+  border: 0;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.notes-value {
+  margin: 0px 10px;
+}
+
+.blur {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.data-container {
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  text-transform: capitalize;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+  padding: 20px;
+  line-height: 25px;
+}
