@@ -1,71 +1,82 @@
-const container = createAndAppend("div", "class", "container", document.body);
-const h1 = createAndAppend("h1", null, null, container);
-const Note = createAndAppend("p", "class", "note", container);
-const textArea = createAndAppend(
-  "textarea",
-  "id",
-  "text",
-  container,
-  null,
-  90,
-  3
+const mainContainer = makeAndFixElement(
+  "div",
+  "class",
+  "main-container",
+  document.body
 );
-const addNote = createAndAppend("button", "class", "btn", container, "click");
 
-Note.innerText = "Note:-";
+const h1 = makeAndFixElement("h1", "class", "h1", mainContainer);
+const textarea = makeAndFixElement(
+  "textarea",
+  "class",
+  "textarea",
+  mainContainer,
+  80,
+  5
+);
+const button = makeAndFixElement("button", "class", "btn", mainContainer);
+button.innerText = "Add Note";
+button.addEventListener("click", getData);
+
 h1.innerText = "Note Taker";
-addNote.innerText = "Add Note";
 
-function createAndAppend(ele, attType, attName, appendWith, event, col, rows) {
+function makeAndFixElement(ele, attType, attName, appendWith, cols, rows) {
   const element = document.createElement(ele);
 
-  if (attType && attName) {
+  if (!!attType && !!attName) {
     element.setAttribute(attType, attName);
   }
 
-  if (appendWith) {
+  if (!!appendWith) {
     appendWith.append(element);
   }
-  if (ele === "textarea") {
-    element.setAttribute("cols", col); // corrected "col" to "cols"
-    element.setAttribute("rows", rows); // corrected "row" to "rows"
-  }
 
-  if (event === "click") {
-    document.querySelector(".btn").addEventListener(event, createNote);
+  if (ele === "textarea") {
+    element.setAttribute("cols", cols);
+    element.setAttribute("rows", rows);
   }
 
   return element;
 }
 
-let counter = 1;
-let storeText = "";
-function makingNote() {
-  const noteContainer = createAndAppend(
+function getData() {
+  const text = textarea.value;
+  const noteContainer = makeAndFixElement(
     "div",
     "class",
     "note-container",
-    container
+    mainContainer
   );
-  const notes = createAndAppend("h4", null, null, noteContainer);
-  const notesValue = createAndAppend("span", "class", "notes-value", notes);
-  const textValue = createAndAppend("div", "class", "textValue", noteContainer);
-  const viewDetail = createAndAppend(
+  const note = makeAndFixElement("div", "class", "note", noteContainer);
+  const viewButton = makeAndFixElement(
     "button",
     "class",
-    "view-detail",
+    "view-btn",
     noteContainer
   );
 
-  notes.innerText = "Note";
-  notesValue.innerText = counter++;
-  textValue.innerText = textArea.value;
-  viewDetail.innerText = "View Detail";
-
-  notes.appendChild(notesValue);
+  note.innerText = text;
+  viewButton.innerText = "View Detail";
+  viewButton.addEventListener("click", function () {
+    showDetails(text);
+  });
 }
 
-function createNote() {
-  makingNote();
-  textArea.value = "";
+function showDetails(details) {
+  const detailContainer = makeAndFixElement(
+    "div",
+    "class",
+    "detail-container",
+    document.body
+  );
+  detailContainer.innerHTML = details + '<i class="icon bx bx-x"></i>';
+  mainContainer.style.display = "none";
+  document.body.classList.add("overlay");
+
+  const icon = detailContainer.querySelector(".icon");
+  icon.addEventListener("click", function () {
+    mainContainer.style.display = "block";
+    detailContainer.style.display = "none";
+    document.body.classList.remove("overlay");
+  });
 }
